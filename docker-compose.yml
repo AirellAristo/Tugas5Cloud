@@ -16,21 +16,19 @@ services:
     ports:
       - 8080:80
     environment:
-      WORDPRESS_DB_HOST: mysql
-      WORDPRESS_DB_USER: ${DB_USERNAME}
-      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
-      WORDPRESS_DB_NAME: ${DB_DATABASE}
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASS}
+      WORDPRESS_DB_NAME: ${DB_NAME}
     depends_on:
       - db
-    volumes:
-      - ./wp-data:/var/www/html
 
   db:
     image: mysql
     environment:
-      MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_USER: ${DB_USERNAME}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
       MYSQL_ROOT_PASSWORD: password
     volumes:
       - ./data:/var/lib/mysql
